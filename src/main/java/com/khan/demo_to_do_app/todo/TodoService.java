@@ -3,7 +3,6 @@ package com.khan.demo_to_do_app.todo;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,9 @@ public class TodoService {
 	}
 	
 	public List<Todo> findByUsername(String username) {
-		return todos;
+		return todos
+				.stream()
+				.filter(todo -> todo.getUsername().equalsIgnoreCase(username)).toList();
 	}
 	
 	public void addTodo(
